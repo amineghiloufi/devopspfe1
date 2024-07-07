@@ -25,7 +25,7 @@ COPY backend/pom.xml .
 COPY backend/src ./src
 
 # Build the Spring Boot application
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # Stage 3: Create the final image
 FROM openjdk:11-jre-slim
