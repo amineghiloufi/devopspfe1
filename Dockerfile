@@ -1,7 +1,7 @@
 # Stage 1: Build Angular frontend
 FROM node:16-alpine as frontend
 
-WORKDIR /pfe/frontend
+WORKDIR /PFEProject/frontend
 
 # Copy package.json and package-lock.json
 COPY frontend/package*.json ./
@@ -18,7 +18,7 @@ RUN npm run build
 # Stage 2: Build Spring Boot backend
 FROM maven:3.8.6-openjdk-11-slim AS backend
 
-WORKDIR /pfe/backend
+WORKDIR /PFEProject/backend
 
 # Copy the Spring Boot application code and the pom.xml
 COPY backend/pom.xml .
@@ -33,10 +33,10 @@ FROM openjdk:11-jre-slim
 WORKDIR /pfe
 
 # Copy the Spring Boot JAR file from the build stage
-COPY --from=backend /pfe/backend/target/backend-0.0.1-SNAPSHOT.jar ./backend.jar
+COPY --from=backend /PFEProject/backend/target/backend-0.0.1-SNAPSHOT.jar ./backend.jar
 
 # Copy the built Angular app from the build stage
-COPY --from=frontend /pfe/frontend/dist/ ./frontend
+COPY --from=frontend /PFEProject/frontend/dist/ ./frontend
 
 # Expose ports
 EXPOSE 8080
