@@ -1,1 +1,4 @@
-Start minikuber with " minikube start" first before running the pipeline !
+1 - Check and change permissions ! : sudo chmod +r /home/jegonise/.minikube/profiles/minikube/client.key
+                               sudo chown jenkins:jenkins /home/jegonise/.minikube/profiles/minikube/client.key
+
+2 - Start minikube using command " minikube start " first before running the jenkins pipeline !
