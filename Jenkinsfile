@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('jegodocker')
-        KUBECONFIG_CREDENTIALS = credentials('jegokube')
+        DOCKERHUB_CREDENTIALS = 'jegodocker'
+        KUBECONFIG_CREDENTIALS = 'jegokube'
     }
     stages {
         stage('Clone Repository') {
