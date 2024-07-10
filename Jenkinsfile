@@ -17,6 +17,16 @@ pipeline {
                 }
             }
         }
+        stage('Print Credentials') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'jegodocker', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_ACCESS_TOKEN')]) {
+                        echo "Username: $DOCKER_HUB_USERNAME"
+                        echo "Access Token: $DOCKER_HUB_ACCESS_TOKEN"
+                    }
+                }
+            }
+        }
         stage('Push Docker Image') {
             steps {
                 script {
