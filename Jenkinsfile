@@ -42,10 +42,7 @@ pipeline {
         stage('Start Minikube') {
             steps {
                 script {
-                    def minikubeStatus = sh(script: 'minikube status', returnStdout: true).trim()
-                    if (!minikubeStatus.contains('host: Running')) {
                         sh 'minikube start'
-                    }
                 }
             }
         }
