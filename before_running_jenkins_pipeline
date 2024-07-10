@@ -1,1 +1,1 @@
-Start minikuber with " minikube start" first before running the pipeline !
+Start minikube using command " minikube start " first before running the jenkins pipeline !
