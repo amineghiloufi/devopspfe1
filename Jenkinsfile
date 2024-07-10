@@ -26,6 +26,29 @@ pipeline {
                 }
             }
         }
+        stage('Check and Set Minikube Permissions') {
+            steps {
+                script {
+                    def keyFile = '/home/jegonise/.minikube/profiles/minikube/client.key'
+                    def keyFilePermissions = sh(script: "stat -c '%A' ${keyFile}", returnStdout: true).trim()
+                    
+                    if (!keyFilePermissions.contains('r')) {
+                        sh "sudo chmod +r ${keyFile}"
+                        sh "sudo chown jenkins:jenkins ${keyFile}"
+                    }
+                }
+            }
+        }
+        stage('Start Minikube') {
+            steps {
+                script {
+                    def minikubeStatus = sh(script: 'minikube status', returnStdout: true).trim()
+                    if (!minikubeStatus.contains('host: Running')) {
+                        sh 'minikube start'
+                    }
+                }
+            }
+        }
         stage('Deploy to Kubernetes') {
             steps {
                 script {
