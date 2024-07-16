@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/amineghiloufi/pfe.git'
+                git 'https://github.com/amineghiloufi/devopspfe1'
             }
         }
         stage('Build and Package') {
